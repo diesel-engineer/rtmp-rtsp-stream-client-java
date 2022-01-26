@@ -378,7 +378,7 @@ public class RtspActivity extends AppCompatActivity
     runOnUiThread(new Runnable() {
       @Override
       public void run() {
-        tvBitrate.setText(bitrate + " bps");
+        tvBitrate.setText(String.format("%.3f Mbps",bitrate / Math.pow(1024, 2)));
       }
     });
   }

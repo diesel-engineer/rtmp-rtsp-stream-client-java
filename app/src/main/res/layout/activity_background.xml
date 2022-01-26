@@ -4,29 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <com.pedro.rtplibrary.view.OpenGlView
-      android:id="@+id/surfaceView"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+    <com.pedro.rtplibrary.view.OpenGlView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-  <EditText
-      android:textColor="@color/appColor"
-      android:textColorHint="@color/appColor"
-      android:inputType="textUri"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center"
-      android:layout_margin="20dp"
-      android:id="@+id/et_rtp_url"
-      />
+    <EditText
+        android:id="@+id/et_rtp_url"
+        style="@style/textStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:inputType="textUri" />
 
     <Button
-        android:text="@string/start_button"
+        android:id="@+id/b_start_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:id="@+id/b_start_stop"
-        />
+        android:text="@string/start_button" />
 </RelativeLayout>
