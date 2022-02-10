@@ -22,6 +22,10 @@ public class ActivityLink {
   private final int minSdk;
   private final String label;
   private final Intent intent;
+  private String url;
+  private int width;
+  private int height;
+  private int bitrate;
 
   public ActivityLink(Intent intent, String label, int minSdk) {
     this.intent = intent;
@@ -34,10 +38,46 @@ public class ActivityLink {
   }
 
   public Intent getIntent() {
+    intent.putExtra("url", url);
+    intent.putExtra("bitrate", bitrate);
+    intent.putExtra("width", width);
+    intent.putExtra("height", height);
     return intent;
   }
 
   public int getMinSdk() {
     return minSdk;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public void setWidth(int width) {
+    this.width = width;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public void setHeight(int height) {
+    this.height = height;
+  }
+
+  public int getBitrate() {
+    return bitrate;
+  }
+
+  public void setBitrate(int bitrate) {
+    this.bitrate = bitrate;
   }
 }

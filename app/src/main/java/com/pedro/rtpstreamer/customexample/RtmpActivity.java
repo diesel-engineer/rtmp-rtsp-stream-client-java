@@ -87,6 +87,9 @@ public class RtmpActivity extends AppCompatActivity
   private String lastVideoBitrate;
   private TextView tvBitrate;
 
+  private int selectedWidth = 0;
+  private int selectedHeight = 0;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -95,7 +98,8 @@ public class RtmpActivity extends AppCompatActivity
     folder = PathUtils.getRecordPath(this);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
-
+    selectedWidth = getIntent().getIntExtra("width", 0);
+    selectedHeight = getIntent().getIntExtra("height", 0);
     SurfaceView surfaceView = findViewById(R.id.surfaceView);
     surfaceView.getHolder().addCallback(this);
     surfaceView.setOnTouchListener(this);
@@ -104,6 +108,7 @@ public class RtmpActivity extends AppCompatActivity
     tvBitrate = findViewById(R.id.tv_bitrate);
     etUrl = findViewById(R.id.et_rtp_url);
     etUrl.setHint(R.string.hint_rtmp);
+    etUrl.setText(getIntent().getStringExtra("url"));
     bStartStop = findViewById(R.id.b_start_stop);
     bStartStop.setOnClickListener(this);
     bRecord = findViewById(R.id.b_record);
@@ -162,6 +167,9 @@ public class RtmpActivity extends AppCompatActivity
     ArrayAdapter<String> resolutionAdapter =
         new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
     List<String> list = new ArrayList<>();
+    if (selectedWidth > 0 && selectedHeight > 0) {
+      list.add(selectedWidth + "X" + selectedHeight);
+    }
     for (Camera.Size size : rtmpCamera1.getResolutionsBack()) {
       list.add(size.width + "X" + size.height);
     }
@@ -174,7 +182,7 @@ public class RtmpActivity extends AppCompatActivity
     etAudioBitrate =
         (EditText) navigationView.getMenu().findItem(R.id.et_audio_bitrate).getActionView();
     etSampleRate = (EditText) navigationView.getMenu().findItem(R.id.et_samplerate).getActionView();
-    etVideoBitrate.setText("2500");
+    etVideoBitrate.setText(getIntent().getIntExtra("bitrate", 2500) + "");
     etFps.setText("30");
     etAudioBitrate.setText("128");
     etSampleRate.setText("44100");
